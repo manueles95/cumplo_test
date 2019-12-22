@@ -1,0 +1,20 @@
+[
+  {
+    "model": "series_values.SeriesIndex",
+    "pk": 1,
+    "fields": {
+      "series_id": "SP68257",
+      "front_identifier": "UDI",
+      "description": "Precio de la unidad de inversion cmparado con el peso Mexicano"
+    }
+  },
+  {
+    "model": "series_values.SeriesIndex",
+    "pk": 2,
+    "fields": {
+      "series_id": "SF63528",
+      "front_identifier": "USD",
+      "description": "Precio del dolar Americano comparado con el peso Mexicano"
+    }
+  }
+]

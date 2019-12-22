@@ -25,7 +25,7 @@ SECRET_KEY = 'p23$i@te5%acbjugojr1fsfpi$b6!l4kp61$*d=a_+b)9qxy@*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'series_values',
 ]
 
 MIDDLEWARE = [
@@ -74,9 +75,17 @@ WSGI_APPLICATION = 'cumplo_test.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cumplo_test',
+        'USER': 'user_cumplo',
+        'PASSWORD': 'secretpassword',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 

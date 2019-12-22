@@ -1,0 +1,79 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Django Highcharts Example</title>
+</head>
+<body>
+  <div id="container"></div>
+    <h1>Name</h1>
+    <h1>{{series_general_info.series_name}}</h1>
+    <h1>Min Value</h1>
+    <h1>{{series_general_info.min_value}}</h1>
+    <h1>Max Value</h1>
+    <h1>{{series_general_info.max_value}}</h1>
+    <h1>AVG Value</h1>
+    <h1>{{series_general_info.average_value}}</h1>
+
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+
+    title: {
+        text: '{{series_general_info.series_name}} Values Over Time'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Mexican Peso'
+        }
+    },
+
+    xAxis: {
+        type: 'datetime',
+        dateTimeLabelFormats: {
+            day: '%e of %b'
+        }
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: Date.UTC({{series_chart_info.intial_date}}),
+            pointInterval: 24 * 3600 * 1000
+        }
+    },
+
+    series: [{
+        name: '{{series_general_info.series_name}}',
+        data: {{series_chart_info.series_values}}
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+  </script>
+</body>
+</html>
