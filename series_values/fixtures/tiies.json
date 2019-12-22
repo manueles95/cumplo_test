@@ -1,0 +1,39 @@
+[
+  {
+    "model": "series_values.TiieIndex",
+    "pk": 1,
+    "fields": {
+      "tiie_id": "SF283",
+      "term": 28,
+      "description": "TIIE a 28 días Tasa de interés promedio mensual, en por ciento anual"
+    }
+  },
+  {
+    "model": "series_values.TiieIndex",
+    "pk": 2,
+    "fields": {
+      "tiie_id": "SF43878",
+      "term": 91,
+      "description": "Tasas de interés interbancarias Por ciento anual TIIE a 91 días"
+
+    }
+  },
+  {
+    "model": "series_values.TiieIndex",
+    "pk": 3,
+    "fields": {
+      "tiie_id": "SF111916",
+      "term": 128,
+      "description": "TIIE a 182 días"
+    }
+  },
+  {
+    "model": "series_values.TiieIndex",
+    "pk": 4,
+    "fields": {
+      "tiie_id": "SF43947",
+      "term": 28,
+      "description": "Tasas de interés interbancarias Por ciento anual TIIP a 28 días"
+    }
+  }
+]
