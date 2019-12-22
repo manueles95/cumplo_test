@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+  <div class="container">
+    <h2>TIIES</h2>
+  </div>
+
+  <div class="container" id="date_picker">
+    <form class="date_picker" method="get" onsubmit="handleDatePicker(event)">
+      <label for="init_date">Initial Date</label>
+      <input name="init_date" type="date" value={{initial_date}}>
+      <label for="end_date">End Date</label>
+      <input name="end_date" type="date" value={{end_date}}>
+      <input type="submit" class="btn" value="Change Date Range">
+    </form>
+  </div>
+  <div class="container">
+
+  <div class="row">
+    {% for tiie in data_for_graph%}
+      <div class="col s4">
+        <h5>Max value for {{ tiie.term }} days term:</h5>
+        <h3>{{ tiie.max_value }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <br>
+  {% for tiie in data_for_graph%}
+    <div class="container" id="{{tiie.term}}"></div>
+  {% endfor %}
+
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+
+    function handleDatePicker(event, series){
+      event.preventDefault()
+
+      init_date = event.target["init_date"].value
+      end_date = event.target["end_date"].value
+
+      if (init_date > end_date) {
+        alert("Initial date should not be greater that end date");
+        return;
+      }
+
+      url = "/tiies/"+init_date+"/"+end_date
+      window.location.href = url
+    }
+
+    {% for tiie in data_for_graph %}
+      random_color = '#'+Math.floor(Math.random()*16777215).toString(16)
+
+      Highcharts.chart('{{tiie.term}}', {
+        title: {
+            text: 'TIIES Values Over Time'
+        },
+        yAxis: {
+            title: {
+                text: 'Percentages'
+            }
+        },
+        xAxis: {
+             categories: [
+             {% for date in tiie.dates %}'{{ date }}'{% if not forloop.last %}, {% endif %}{% endfor %}
+             ]
+        },
+        plotOptions: {
+          series: {
+              color: random_color
+          }
+        },
+        series: [{
+            name: '{{tiie.description}}',
+            data: {{tiie.values}}
+        }],
+      });
+    {% endfor %}
+  </script>
+</body>
+
+{% endblock %}

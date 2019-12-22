@@ -7,6 +7,6 @@ class SeriesIndex(models.Model):
     description = models.CharField(max_length=100)
 
 class TiieIndex(models.Model):
-    tiie_id = models.CharField(max_length=10, primary_key=True);
+    tiie_id = models.CharField(max_length=10, primary_key=True)
     term = models.IntegerField()
     description = models.CharField(max_length=100)

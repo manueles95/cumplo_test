@@ -26,14 +26,5 @@
       "term": 128,
       "description": "TIIE a 182 días"
     }
-  },
-  {
-    "model": "series_values.TiieIndex",
-    "pk": 4,
-    "fields": {
-      "tiie_id": "SF43947",
-      "term": 28,
-      "description": "Tasas de interés interbancarias Por ciento anual TIIP a 28 días"
-    }
   }
 ]
