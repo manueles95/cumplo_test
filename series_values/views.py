@@ -2,7 +2,7 @@ from django.shortcuts import render
 from series_values.models import SeriesIndex
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from series_values.serializers import SeriesInformationSerializer
+from series_values.serializers import SeriesInformationSerializer, DateSerializer
 from django.http import Http404
 import requests
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -34,19 +34,17 @@ class SeriesInformation(APIView):
             raise Http404
 
     def calculateAverage(self, list):
-        return sum(list) / len(list)
+        return round(sum(list) / len(list), 2)
 
     def getMinValue(self, list):
-        return min(list)
+        return round(min(list), 2)
 
     def getMaxValue(self, list):
-        return max(list)
+        return round(max(list), 2)
 
     def get(self, request, front_id, init_date, end_date, format=None):
-        print(front_id)
-        series_index = self.get_object(front_id)
-        print(series_index.series_id)
 
+        series_index = self.get_object(front_id)
 
         base_url = 'https://www.banxico.org.mx/SieAPIRest/service/v1/series'
         final_url = '/'.join([base_url, series_index.series_id, 'datos', init_date, end_date])
@@ -61,18 +59,16 @@ class SeriesInformation(APIView):
             print(f'Other error occurres: {err}')
 
         series_response = response.json()
-
-
-        # print(series_response['bmx']['series'][0]['datos'])
         series_data = series_response['bmx']['series'][0]['datos']
-        # print(series_data)
+
 
         values_arr = []
+        dates_arr = []
         for dato in series_data:
-            # print(dato)
             values_arr.append(float(dato['dato']))
+            date = str(dato['fecha'])
+            dates_arr.append(date)
 
-        # print(values_arr)
 
         average_value = self.calculateAverage(values_arr)
         min_value = self.getMinValue(values_arr)
@@ -86,7 +82,14 @@ class SeriesInformation(APIView):
             'series_chart_info': {
                 'intial_date': init_date,
                 'end_date': end_date,
-                'series_values': values_arr
+                'series_values': values_arr,
+                'series_dates': dates_arr
             }
         }
         return Response(context)
+
+class Base(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'base.html'
+    def get(self, request):
+        return Response()

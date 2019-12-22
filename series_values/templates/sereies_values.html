@@ -1,79 +1,76 @@
-
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Django Highcharts Example</title>
-</head>
+{% extends "base.html" %}
+{% block content %}
 <body>
-  <div id="container"></div>
-    <h1>Name</h1>
-    <h1>{{series_general_info.series_name}}</h1>
-    <h1>Min Value</h1>
-    <h1>{{series_general_info.min_value}}</h1>
-    <h1>Max Value</h1>
-    <h1>{{series_general_info.max_value}}</h1>
-    <h1>AVG Value</h1>
-    <h1>{{series_general_info.average_value}}</h1>
+  <div class="container">
 
+    <h2>{{series_general_info.series_name}}</h2>
+
+    <table>
+      <tr>
+        <th>Min Value</th>
+        <th>Max Value</th>
+        <th>Average Value</th>
+      </tr>
+      <tr>
+        <th>{{series_general_info.min_value}}</th>
+        <th>{{series_general_info.max_value}}</th>
+        <th>{{series_general_info.average_value}}</th>
+      </tr>
+    </table>
+
+
+  </div>
+  <br>
+  <div class="container" id="date_picker">
+    <form class="date_picker" method="get" onsubmit="handleDatePicker(event, '{{series_general_info.series_name}}')">
+      <label for="init_date">Initial Date</label>
+      <input name="init_date" type="date" value={{series_chart_info.intial_date}}>
+      <label for="end_date">End Date</label>
+      <input name="end_date" type="date" value={{series_chart_info.end_date}}>
+      <input type="submit" class="btn" value="Change Date Range">
+    </form>
+  </div>
+  <br>
+  <div class="container" id="chart"></div>
   <script src="https://code.highcharts.com/highcharts.src.js"></script>
   <script>
-    Highcharts.chart('container', {
+    function handleDatePicker(event, series){
+      event.preventDefault()
 
-    title: {
-        text: '{{series_general_info.series_name}} Values Over Time'
-    },
+      init_date = event.target["init_date"].value
+      end_date = event.target["end_date"].value
 
-    yAxis: {
-        title: {
-            text: 'Mexican Peso'
-        }
-    },
+      if (init_date > end_date) {
+        alert("Initial date should not be greater that end date");
+        return;
+      }
 
-    xAxis: {
-        type: 'datetime',
-        dateTimeLabelFormats: {
-            day: '%e of %b'
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: Date.UTC({{series_chart_info.intial_date}}),
-            pointInterval: 24 * 3600 * 1000
-        }
-    },
-
-    series: [{
-        name: '{{series_general_info.series_name}}',
-        data: {{series_chart_info.series_values}}
-    }],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
+      console.log(init_date)
+      console.log(end_date)
+      url = "/series/"+series+"/"+init_date+"/"+end_date
+      window.location.href = url
     }
 
-});
+
+    Highcharts.chart('chart', {
+      title: {
+          text: '{{series_general_info.series_name}} Values Over Time'
+      },
+      yAxis: {
+          title: {
+              text: 'Mexican Peso'
+          }
+      },
+      xAxis: {
+           categories: [{% for date in series_chart_info.series_dates %}'{{ date }}'{% if not forloop.last %}, {% endif %}{% endfor %}]
+      },
+      series: [{
+          name: '{{series_general_info.series_name}}',
+          data: {{series_chart_info.series_values}}
+      }],
+    });
   </script>
+
 </body>
-</html>
+
+{% endblock %}

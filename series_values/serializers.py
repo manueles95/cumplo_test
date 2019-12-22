@@ -9,3 +9,6 @@ class SeriesInformationSerializer(serializers.Serializer):
     average_value = serializers.FloatField()
     min_value = serializers.FloatField()
     max_value = serializers.FloatField()
+
+class DateSerializer(serializers.Serializer):
+    date = serializers.CharField()
