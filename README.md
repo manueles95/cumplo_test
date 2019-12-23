@@ -30,10 +30,12 @@ Before running the application you should follow these steps
 - Located at the application root folder run the following commands
 
     ```sh
+    $ pip install -r requirements.txt
     $ python manage.py makemigrations
     $ python manage.py migrate
     $ python manage.py loaddata series tiies
     $ python manage.py runserver 0.0.0.0:8000
+
     ```
 
 # After Server is running
@@ -59,5 +61,7 @@ This will automatically create
 
 - A conatiner running the sql server with the required user and database configurations
 - A container serving our application
+
+**Due to an unidentified bug when composing the db image, you may need to run the docker-compose command two or three times for the initial set up to take place**
 
 After running that command you are set to go, simply open your browser at at **127.0.0.1:8000** and start using the application
