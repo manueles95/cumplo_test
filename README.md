@@ -39,7 +39,7 @@ Before running the application you should follow these steps
 # After Server is running
 
     Open your Browser at
-    ```
+    ```sh
     127.0.0.1:8000
     ```
 
