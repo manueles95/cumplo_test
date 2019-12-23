@@ -43,3 +43,19 @@ Before running the application you should follow these steps
 
 
 You should see a white window with a red nav bar, click on any of its options to start using the application
+
+# Docker alternatives
+
+This application is set up to use docker and docker-compose
+
+If you don't want to set a database server and run the described python commands by hand you can simply  run
+
+  ```sh
+  $ docker-compose --build
+
+  ```
+
+This will automatically create
+
+- A conatiner running the sql server with the required user and database configurations
+- A container serving our application
