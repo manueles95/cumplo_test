@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'cumplo_test',
         'USER': 'user_cumplo',
         'PASSWORD': 'secretpassword',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '3306',
     }
 }
