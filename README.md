@@ -38,7 +38,7 @@ Before running the application you should follow these steps
 
 # After Server is running
 
-- Open your Browser at **127.0.0.1:8000**
+- Open your browser at **127.0.0.1:8000**
 
 
 
@@ -51,7 +51,7 @@ This application is set up to use docker and docker-compose
 If you don't want to set a database server and run the described python commands by hand you can simply  run
 
   ```sh
-  $ docker-compose --build
+  $ docker-compose up --build
 
   ```
 
@@ -59,3 +59,5 @@ This will automatically create
 
 - A conatiner running the sql server with the required user and database configurations
 - A container serving our application
+
+After running that command you are set to go, simply open your browser at at **127.0.0.1:8000** and start using the application
