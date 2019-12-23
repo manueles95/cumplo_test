@@ -50,6 +50,9 @@ You should see a white window with a red nav bar, click on any of its options to
 
 This application is set up to use docker and docker-compose
 
+## First
+- Go to setting.py file and change the 'HOST':'localhost' in database configuration to 'HOST':'db'
+
 If you don't want to set a database server and run the described python commands by hand you can simply  run
 
   ```sh

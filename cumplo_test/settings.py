@@ -74,6 +74,9 @@ WSGI_APPLICATION = 'cumplo_test.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# If you are starting the application using docker-compose
+# change database 'HOST' to 'db'
+# 'HOST':'localhost' -> 'HOST': 'db'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
