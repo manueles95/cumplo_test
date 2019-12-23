@@ -33,5 +33,14 @@ Before running the application you should follow these steps
     $ python manage.py makemigrations
     $ python manage.py migrate
     $ python manage.py loaddata series tiies
-    $ python manage.py runserver 0.0.0.0:8000"
+    $ python manage.py runserver 0.0.0.0:8000
     ```
+
+# After Server is running
+
+    Open your Browser at
+    ```
+    127.0.0.1:8000
+    ```
+
+    You should see a white window with a red nav bar, click on any of its options to start using the application
