@@ -38,10 +38,8 @@ Before running the application you should follow these steps
 
 # After Server is running
 
-    Open your Browser at
+- Open your Browser at **127.0.0.1:8000**
 
-    ```sh
-     127.0.0.1:8000
-    ```
 
-    You should see a white window with a red nav bar, click on any of its options to start using the application
+
+You should see a white window with a red nav bar, click on any of its options to start using the application
