@@ -6,7 +6,7 @@
 
 Django applications that connects to the Banxico api to show historiacal graph and information on different monetary series
 
-To see an online demonstartion [click here](http://127.0.0.1:8000)
+To see an online demo [click here](http://159.65.108.240:8000/)
 
 
 
