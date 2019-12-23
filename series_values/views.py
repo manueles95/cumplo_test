@@ -171,6 +171,10 @@ class TiieComparisson(APIView):
 
 
 class Base(APIView):
+    """
+    Base api endpooint
+    Shows empty body with nav var
+    """
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'base.html'
     def get(self, request):
